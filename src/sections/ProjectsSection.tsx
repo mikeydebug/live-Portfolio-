@@ -10,6 +10,8 @@ const PROJECTS = [
     desc: "A comprehensive system designed to manage and monitor large crowds effectively, ensuring safety and order using data analytics and real-time tracking.",
     stack: "React · Node.js · MongoDB",
     github: "https://github.com/Kartavya2906/Crowd_Management_System",
+    live: "https://crowdbuddy.vercel.app/",
+    image: "/projects/crowdbuddy.png",
     color: "from-blue-500/20 to-purple-500/20"
   },
   {
@@ -19,6 +21,7 @@ const PROJECTS = [
     desc: "A modern platform for finding and booking accommodations, featuring dynamic search, user authentication, and seamless booking flows.",
     stack: "React · Tailwind CSS · MongoDB",
     github: "https://github.com/mikeydebug/StayNest",
+    image: "/projects/staynest.png",
     color: "from-pink-500/20 to-rose-500/20"
   },
   {
@@ -28,6 +31,8 @@ const PROJECTS = [
     desc: "An enterprise-grade dashboard to manage employee records, attendance, and payroll with secure role-based access.",
     stack: "MERN Stack · Express",
     github: "https://github.com/mikeydebug/Employees-Management-System",
+    live: "https://employees-management-system-demo.vercel.app",
+    image: "/projects/empoyee managemerntsystem.png",
     color: "from-cyan-500/20 to-teal-500/20"
   },
   {
@@ -37,6 +42,8 @@ const PROJECTS = [
     desc: "A visually stunning portfolio website for an interior design agency, highlighting high-quality images with smooth scroll animations.",
     stack: "HTML · Tailwind CSS · JS",
     github: "https://github.com/mikeydebug/Interior-Design-website",
+    live: "https://interior-design-website-smoky-nine.vercel.app",
+    image: "/projects/interir-design.png",
     color: "from-amber-500/20 to-orange-500/20"
   }
 ];
@@ -79,26 +86,49 @@ function ProjectCard({ project, index, total, progress }: ProjectCardProps) {
               </h3>
             </div>
             
-            <a 
-              href={project.github} 
-              target="_blank" 
-              rel="noreferrer"
-              className="group flex items-center gap-2 px-6 py-3 rounded-full border border-dark-border hover:border-accent-blue/50 text-text-secondary hover:text-white transition-all bg-dark-base w-max"
-            >
-              View Project 
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+            <div className="flex flex-wrap items-center gap-3">
+              <a 
+                href={project.github} 
+                target="_blank" 
+                rel="noreferrer"
+                className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-dark-border hover:border-accent-blue/50 text-text-secondary hover:text-white transition-all bg-dark-base w-max text-sm"
+              >
+                GitHub 
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+              {/* @ts-ignore */}
+              {project.live && (
+                <a 
+                  // @ts-ignore
+                  href={project.live} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-accent-blue/50 hover:border-accent-cyan bg-accent-blue/10 hover:bg-accent-blue/20 text-accent-cyan transition-all w-max text-sm"
+                >
+                  Live Demo
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              )}
+            </div>
           </div>
 
           {/* Bottom Area / Image Placeholder */}
           <div className={`w-full h-[clamp(200px,30vw,400px)] rounded-[30px] bg-gradient-to-br ${project.color} border border-dark-border relative flex items-center justify-center overflow-hidden`}>
-            <div className="absolute inset-0 bg-dark-base/50 backdrop-blur-sm"></div>
-            <div className="relative z-10 flex flex-col items-center gap-4 text-center px-4">
-              <div className="text-white/40 font-mono text-sm uppercase tracking-widest">Project Preview</div>
-              <div className="px-4 py-2 rounded-full bg-dark-card/80 border border-dark-border/50 text-accent-cyan text-sm font-medium backdrop-blur-md">
-                {project.stack}
-              </div>
-            </div>
+            {/* @ts-ignore */}
+            {project.image ? (
+              // @ts-ignore
+              <img src={project.image} alt={project.title} className="w-full h-full object-cover object-top opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-700" />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-dark-base/50 backdrop-blur-sm"></div>
+                <div className="relative z-10 flex flex-col items-center gap-4 text-center px-4">
+                  <div className="text-white/40 font-mono text-sm uppercase tracking-widest">Project Preview</div>
+                  <div className="px-4 py-2 rounded-full bg-dark-card/80 border border-dark-border/50 text-accent-cyan text-sm font-medium backdrop-blur-md">
+                    {project.stack}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <p className="text-text-darker text-sm md:text-base leading-relaxed">
